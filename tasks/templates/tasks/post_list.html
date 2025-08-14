@@ -14,13 +14,81 @@
     <style>
       body {
         font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #add8e6, #ffb6c1);
+        background: linear-gradient(270deg, #add8e6, #ffb6c1, #a1c4fd, #ff99ac);
+        background-size: 800% 800%;
+        animation: gradientShift 15s ease infinite;
         color: #444;
         min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
       }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating blobs */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.5;
+        animation: floatBlobs 20s infinite alternate ease-in-out;
+        z-index: 0;
+      }
+
+      .blob1 {
+        width: 300px;
+        height: 300px;
+        background: #ffb6c1;
+        top: -50px;
+        left: -50px;
+        animation-delay: 0s;
+      }
+
+      .blob2 {
+        width: 400px;
+        height: 400px;
+        background: #a1c4fd;
+        bottom: -100px;
+        right: -100px;
+        animation-delay: 5s;
+      }
+
+      .blob3 {
+        width: 250px;
+        height: 250px;
+        background: #ffe0eb;
+        top: 40%;
+        left: 70%;
+        animation-delay: 10s;
+      }
+
+      @keyframes floatBlobs {
+        0% {
+          transform: translateY(0) translateX(0);
+        }
+        50% {
+          transform: translateY(-50px) translateX(30px);
+        }
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+      }
+
       h1 {
         font-weight: 600;
         margin-bottom: 30px;
+        position: relative;
+        z-index: 1;
       }
       .card {
         background: linear-gradient(135deg, #d0eaff, #ffe0eb);
@@ -28,6 +96,8 @@
         border-radius: 15px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         color: #333;
+        position: relative;
+        z-index: 1;
       }
       .card:hover {
         transform: translateY(-5px);
@@ -54,6 +124,11 @@
     </style>
   </head>
   <body>
+    <!-- Floating blobs -->
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
     <div class="container mt-5">
       <h1 class="text-center">Blog Posts</h1>
       <div id="posts" class="row"></div>
